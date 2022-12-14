@@ -4,25 +4,11 @@ function Main() {
   let array = [];
   const [value, setValue] = useState("");
   const [textTodo, setTextTodo]= useState("")
+  const [textTodoComp, setTextTodoComp]= useState(false)
+  let lineTh
+  const [todoCheked, setTodoDo]= useState(lineTh)
 
   const [todos, setTodos] = useState(array);
-  //   const [todos, setTodos] = useState([
-  // {
-  //   id: 1,
-  //   text: "Kitob o'qish",
-  //   isComplete: false,
-  // },
-  // {
-  //   id: 2,
-  //   text: "Code yozish",
-  //   isComplete: false,
-  // },
-  // {
-  //   id: 3,
-  //   text: "Futbol ko'rish",
-  //   isComplete: false,
-  // },
-  //   ]);
 
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
@@ -50,23 +36,24 @@ function Main() {
     }
   };
 
-let lineTh
-const [todoCheked, setTodoDo]= useState(lineTh)
 
-const todoDo=(props)=>{
-        props.isComplete = !props.isComplete;
-        if (props.isComplete) {
-            lineTh={
-                "textDecoration": "line-through"  
-            }
-            setTodoDo(lineTh)
-        }else if(props.isComplete==false){
-            lineTh={
-                "textDecoration": "none"  
-            }
-            setTodoDo(lineTh)
-        }
-    }
+
+// const todoDo=(props)=>{
+//         props.isComplete = !props.isComplete;
+//         setTextTodoComp(props.isComplete)
+//         console.log(todos);
+//         if (props.isComplete==true) {
+//             lineTh={
+//                 "textDecoration": "line-through"  
+//             }
+//             setTodoDo(lineTh)
+//         }else if(props.isComplete==false){
+//             lineTh={
+//                 "textDecoration": "none"  
+//             }
+//             setTodoDo(lineTh)
+//         }
+//     }
 
   return (
     <>
@@ -91,7 +78,7 @@ const todoDo=(props)=>{
             className="w-100 d-flex  justify-content-between p-1 bg-primary rounded text-light"
             key={todo.id}>
             <div className="d-flex align-items-center gap-3">
-              <input onClick={()=>todoDo(todo)} type="checkbox" />
+              <input defaultChecked={textTodoComp}  type="checkbox" />
               <p className="m-0" style={todoCheked}>{todo.text}</p>
             </div>
 
