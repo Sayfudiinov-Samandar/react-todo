@@ -3,10 +3,10 @@ import React, { useState } from "react";
 function Main() {
   let array = [];
   const [value, setValue] = useState("");
-  const [textTodo, setTextTodo]= useState("")
-  const [textTodoComp, setTextTodoComp]= useState(false)
-  let lineTh
-  const [todoCheked, setTodoDo]= useState(lineTh)
+  const [textTodo, setTextTodo] = useState("");
+  const [textTodoComp, setTextTodoComp] = useState(false);
+  let lineTh;
+  const [todoCheked, setTodoDo] = useState(lineTh);
 
   const [todos, setTodos] = useState(array);
 
@@ -30,30 +30,17 @@ function Main() {
     setTodos(todos.filter((itm) => itm.id !== props));
   };
   const EditTodo = (props) => {
-    let newText=prompt("Enter your todo text")
+    let newText = prompt("Enter your todo text");
     if (newText) {
-        setTextTodo(props.text=newText)
+      setTextTodo((props.text = newText));
     }
   };
 
-
-
-// const todoDo=(props)=>{
-//         props.isComplete = !props.isComplete;
-//         setTextTodoComp(props.isComplete)
-//         console.log(todos);
-//         if (props.isComplete==true) {
-//             lineTh={
-//                 "textDecoration": "line-through"  
-//             }
-//             setTodoDo(lineTh)
-//         }else if(props.isComplete==false){
-//             lineTh={
-//                 "textDecoration": "none"  
-//             }
-//             setTodoDo(lineTh)
-//         }
-//     }
+  const todoDo = (props) => {
+    props.isComplete = !props.isComplete;
+    console.log(todos);
+    setTodos([...todos])
+  };
 
   return (
     <>
@@ -78,8 +65,19 @@ function Main() {
             className="w-100 d-flex  justify-content-between p-1 bg-primary rounded text-light"
             key={todo.id}>
             <div className="d-flex align-items-center gap-3">
-              <input defaultChecked={textTodoComp}  type="checkbox" />
-              <p className="m-0" style={todoCheked}>{todo.text}</p>
+              <input
+                defaultChecked={textTodoComp}
+                onChange={() => todoDo(todo)}
+                type="checkbox"
+              />
+              <p
+                className={
+                  todo.isComplete
+                    ? "flex-grow-1 text-decoration-line-through m-0"
+                    : "flex-grow-1 m-0"
+                }>
+                {todo.text}
+              </p>
             </div>
 
             <div className="d-flex gap-2">
